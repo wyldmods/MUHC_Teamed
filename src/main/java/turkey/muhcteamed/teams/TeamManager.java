@@ -13,8 +13,8 @@ import com.google.common.collect.Lists;
 
 public class TeamManager
 {
-	public List<Team> teams = Lists.newArrayList();
-	public List<EntityPlayer> unassinged = Lists.newArrayList();
+	private List<Team> teams = Lists.newArrayList();
+	private List<EntityPlayer> unassinged = Lists.newArrayList();
 
 	public TeamManager()
 	{
@@ -32,6 +32,14 @@ public class TeamManager
 	{
 		this.teams.add(new Team(name));
 		// TODO: Add this team to the config
+	}
+	
+	public Team getTeamFromName(String teamName)
+	{
+		for(Team t : teams)
+			if(t.getTeamName().equals(teamName))
+				return t;
+		return null;
 	}
 
 	public boolean assignPlayerToTeam(EntityPlayer player, String teamName)

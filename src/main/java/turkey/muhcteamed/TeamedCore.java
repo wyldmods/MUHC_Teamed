@@ -3,7 +3,8 @@ package turkey.muhcteamed;
 import org.apache.logging.log4j.Logger;
 
 import turkey.muhcteamed.config.ConfigLoader;
-import turkey.muhcteamed.listeners.PlayerJoinEvent;
+import turkey.muhcteamed.listeners.CommandListener;
+import turkey.muhcteamed.listeners.PlayerConnectionListener;
 import turkey.muhcteamed.proxy.CommonProxy;
 import turkey.muhcteamed.teams.TeamManager;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -14,6 +15,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = TeamedCore.MODID, version = TeamedCore.VERSION)
 public class TeamedCore
@@ -35,21 +37,25 @@ public class TeamedCore
 		logger = event.getModLog();
 		ConfigLoader.loadConfigSettings(event.getSuggestedConfigurationFile());
 		manager = new TeamManager();
-		
-		
-		
-		FMLCommonHandler.instance().bus().register(new PlayerJoinEvent());
+
+		FMLCommonHandler.instance().bus().register(new PlayerConnectionListener());
 	}
-	
+
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		
+
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
 
+	}
+
+	@EventHandler
+	public void serverLoad(FMLServerStartingEvent event)
+	{
+		event.registerServerCommand(new CommandListener());
 	}
 }
