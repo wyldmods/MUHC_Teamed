@@ -1,0 +1,16 @@
+[
+{
+  "modid": "lightmatter",
+  "name": "Light Matter",
+  "description": "",
+  "version": "@Version@",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Turkey2349","MJRLegands"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

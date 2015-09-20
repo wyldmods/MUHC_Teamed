@@ -1,0 +1,42 @@
+itemGroup.lightmatter=Light Matter
+
+tile.Light_Collector.name= Light Collector
+tile.Light_Healer.name= Light Healer
+
+item.Shard_Of_Light.name=Shard Of Light
+item.Light_Ingot.name=Light Ingot
+item.Darkness_Ingot.name=Darkness Ingot
+
+item.Colored_Ingot.white.name=White Colored Ingot
+item.Colored_Ingot.orange.name=Orange Colored Ingot
+item.Colored_Ingot.magenta.name=Magenta Colored Ingot
+item.Colored_Ingot.light_blue.name=Light Blue Colored Ingot
+item.Colored_Ingot.yellow.name=Yellow Colored Ingot
+item.Colored_Ingot.lime.name=Lime Colored Ingot
+item.Colored_Ingot.pink.name=Pink Colored Ingot
+item.Colored_Ingot.gray.name=Gray Colored Ingot
+item.Colored_Ingot.silver.name=Silver Colored Ingot
+item.Colored_Ingot.cyan.name=Cyan Colored Ingot
+item.Colored_Ingot.purple.name=Purple Colored Ingot
+item.Colored_Ingot.blue.name=Blue Colored Ingot
+item.Colored_Ingot.brown.name=Brown Colored Ingot
+item.Colored_Ingot.green.name=Green Colored Ingot
+item.Colored_Ingot.red.name=Red Colored Ingot
+item.Colored_Ingot.black.name=Black Colored Ingot
+
+item.Colored_Core.white.name=Core of Silk
+item.Colored_Core.orange.name=Core of Fire
+item.Colored_Core.magenta.name=Magenta Core
+item.Colored_Core.light_blue.name=Core of the Sky
+item.Colored_Core.yellow.name=Core of Wealth
+item.Colored_Core.lime.name=Lime Core
+item.Colored_Core.pink.name=Pink Core
+item.Colored_Core.gray.name=Core of Speed
+item.Colored_Core.silver.name=Core of Durability
+item.Colored_Core.cyan.name=Cyan Core
+item.Colored_Core.purple.name=Purple Core
+item.Colored_Core.blue.name=Core of Water
+item.Colored_Core.brown.name=Core of the Earth
+item.Colored_Core.green.name=Core of Life
+item.Colored_Core.red.name=Core of Rage
+item.Colored_Core.black.name=Core of the Void

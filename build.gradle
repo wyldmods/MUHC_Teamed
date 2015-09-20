@@ -1,0 +1,69 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+
+ext.buildnumber = 0
+if (System.getenv('BUILD_NUMBER') != null)
+    project.buildnumber = System.getenv('BUILD_NUMBER')
+else
+    logger.lifecycle "No build number detected, setting to 0"
+
+group= "turkey.muhcteamed"
+archivesBaseName = "MUHCTeamed"
+version = "${mc_version}-${mod_version}.${buildnumber}"
+
+minecraft {
+    version = "1.7.10-10.13.3.1403-1.7.10"
+	
+	replace "@VERSION@", project.version
+    replaceIn "TeamedCore.java"
+	replaceIn "mcmod.info"
+}
+
+repositories {
+	maven { url = "http://maven.tterrag.com" }
+    maven { url = "http://chickenbones.net/maven/" }
+}
+
+dependencies {
+	compile "com.enderio.core:EnderCore:${mc_version}-${endercore_version}:dev"
+}
+
+processResources
+{
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+    
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+    
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+task deobfJar(type: Jar) {
+        from sourceSets.main.output
+        appendix = 'deobf'
+}
+ 
+artifacts {
+        archives deobfJar
+}
