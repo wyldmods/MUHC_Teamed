@@ -2,24 +2,20 @@ package turkey.muhcteamed.listeners;
 
 import java.util.List;
 
-import turkey.muhcteamed.TeamedCore;
-import turkey.muhcteamed.teams.Team;
-import net.minecraft.command.ICommand;
+import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
+import turkey.muhcteamed.TeamedCore;
+import turkey.muhcteamed.teams.Team;
 
-import com.google.common.collect.Lists;
-
-public class CommandListener implements ICommand
+public class CommandListener extends CommandBase
 {
-	private List<String> aliases;
 
 	public CommandListener()
 	{
-		this.aliases = Lists.newArrayList();
-		this.aliases.add("muhc");
+		
 	}
 
 	@Override
@@ -32,13 +28,6 @@ public class CommandListener implements ICommand
 	public String getCommandUsage(ICommandSender icommandsender)
 	{
 		return "muhc <create:group:help:settings> ";
-	}
-
-	@SuppressWarnings("rawtypes")
-	@Override
-	public List getCommandAliases()
-	{
-		return this.aliases;
 	}
 
 	@Override
@@ -91,15 +80,14 @@ public class CommandListener implements ICommand
 				{
 					if(args[2].equalsIgnoreCase("addUser"))
 					{
-						team.addPlayerToTeam(player);
+						TeamedCore.manager.assignPlayerToTeam(player, args[1]);
 						icommandsender.addChatMessage(new ChatComponentText(player.getCommandSenderName() + " was added to " + args[1]));
 						TeamedCore.manager.sendMessageToAll(player.getCommandSenderName() + " was assigned to " + args[1]);
 					}
 					else if(args[2].equalsIgnoreCase("removeUser"))
 					{
-						team.addPlayerToTeam(player);
+						TeamedCore.manager.removePlayerFromTeam(player);
 						icommandsender.addChatMessage(new ChatComponentText(player.getCommandSenderName() + " was removed from " + args[1]));
-						TeamedCore.manager.assignPlayerToUnassinged(player);
 					}
 					else
 					{
@@ -128,18 +116,18 @@ public class CommandListener implements ICommand
 	@Override
 	public List addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
 	{
+		//This is set up like this for expansion purposes
+		if(astring.length > 1)
+		{
+			if(astring[0].equalsIgnoreCase("team"))
+			{
+				if(astring.length == 4)
+				{
+					return getListOfStringsMatchingLastWord(astring, MinecraftServer.getServer().getAllUsernames());
+				}
+			}
+		}
+		
 		return null;
-	}
-
-	@Override
-	public boolean isUsernameIndex(String[] astring, int i)
-	{
-		return false;
-	}
-
-	@Override
-	public int compareTo(Object o)
-	{
-		return 0;
 	}
 }

@@ -106,6 +106,7 @@ public class TeamManager
 				if(t.isPlayerOnTeam(player))
 				{
 					t.removePlayerFromTeam(player);
+					this.unassinged.add(player);
 				}
 			}
 		}
